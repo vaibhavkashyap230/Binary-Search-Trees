@@ -1,0 +1,56 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+
+class node
+
+{
+public:
+int data;
+node *left ,*right;
+};
+
+node* insert(node *temp,int data)
+{
+if(temp==NULL)
+{
+node *nn=new node();
+nn->data=data;
+nn->left=NULL;
+nn->right=NULL;
+return nn;
+}
+
+if(data<=temp->data)
+temp->left=insert(temp->left,data);
+
+else{temp->right=insert(temp->right,data);}
+
+return temp; 
+}
+
+int count(node *temp,int c)
+{
+if(temp==NULL)
+return c;
+
+if((temp->left==NULL && temp->right!=NULL) || (temp->left!=NULL && temp->right==NULL))
+{
+c+=1;
+}
+
+return c+count(temp->right,0)+count(temp->left,0);
+}
+
+main()
+{
+node *root=NULL;
+root=insert(root,2);
+root=insert(root,3);
+root=insert(root,4);
+root=insert(root,5);
+root=insert(root,1);
+root=insert(root,6);
+cout<<count(root,0);
+return(0);
+}
