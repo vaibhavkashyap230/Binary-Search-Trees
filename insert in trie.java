@@ -12,16 +12,16 @@
 //}
 
 private static void insert(TrieNode temp,String s)
+{
+	if(s.length()==0)
 	{
-		if(s.length()==0)
-		{
-			temp.eow=true;
-			return;
-		}
-		
-		if(temp.child[s.charAt(0)-97]==null)
-		{
-			temp.child[s.charAt(0)-97] = new TrieNode(s.charAt(0));
-		}
-		insert(temp.child[s.charAt(0)-97],s.substring(1));
+		temp.eow=true;
+		return;
 	}
+
+	if(temp.child[s.charAt(0)-97]==null)
+	{
+		temp.child[s.charAt(0)-97] = new TrieNode(s.charAt(0));
+	}
+	insert(temp.child[s.charAt(0)-97],s.substring(1));
+}
